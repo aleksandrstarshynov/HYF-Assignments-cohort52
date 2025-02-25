@@ -1,31 +1,32 @@
-// Function to randomly select an element from each array
-function selectRandomly(arrays) {
-  const randomeOption =arrays.map(array => array[Math.floor(Math.random() * array.length)]);
-  return randomeOption;
+function selectRandomly(name) {
+  const randomElement = Math.floor(Math.random() * name.length)
+  return randomElement;
 }
 
-// Function to tell the fortune
-function tellFortune(numKidsArray, partnerNamesArray, locationsArray, jobTitlesArray) {
-// Use the selectRandomly function to select values from the arrays
-  const fortuneOptions = selectRandomly([numKidsArray, partnerNamesArray, locationsArray, jobTitlesArray]);
-
-// Return the formatted string with the selected random values
-  return `You will be a ${fortuneOptions[3]} in ${fortuneOptions[2]}, married to ${fortuneOptions[1]} with ${fortuneOptions[0]} kids.`;
+export function tellFortune(numKids, partnerNames, locations, jobTitles) {
+  const Kids = numKids[selectRandomly(numKids)];
+  const Partners = partnerNames[selectRandomly(partnerNames)];
+  const Loc = locations[selectRandomly(locations)];
+  const Titles = jobTitles[selectRandomly(jobTitles)];
+  return `You will be a ${Titles} in ${Loc}, married to ${Partners} with ${Kids} kids.`
 }
 
 function main() {
+  const numKids = [3, 5, 2, 4, 6];
 
-  const numKids = [`2`, `3`, `4`, `5`, `6`];
-  const partnerNames = [`Alice`, `Bob`, `Charlie`, `Daisy`, `Eve`];
-  const locations = [`New York`, `Paris`, `Tokyo`, `Amsterdam`, `Sydney`];
-  const jobTitles = [`developer`, `designer`, `doctor`, `teacher`, `engineer`];
+  const partnerNames = ["Aleksandr", "Michael", "Dimitri", "John", "Tim"];
 
-   console.log(tellFortune(numKids, partnerNames, locations, jobTitles));
-   console.log(tellFortune(numKids, partnerNames, locations, jobTitles));
-   console.log(tellFortune(numKids, partnerNames, locations, jobTitles));
+  const locations = ["Amsterdam", "Utrecht", "Rotterdam", "Den Haag", "Texel"];
+
+  const jobTitles = ["programmer", "seller", "cook", "model", "engineer"];
+
+
+  console.log(tellFortune(numKids, partnerNames, locations, jobTitles));
+  console.log(tellFortune(numKids, partnerNames, locations, jobTitles));
+  console.log(tellFortune(numKids, partnerNames, locations, jobTitles));
 }
-  
-  // // ! Do not change or remove the code below
- if (process.env.NODE_ENV !== 'test') {
-   main();
- }
+
+// ! Do not change or remove the code below
+if (process.env.NODE_ENV !== 'test') {
+  main();
+}
