@@ -20,8 +20,81 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 
    https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif
 -----------------------------------------------------------------------------*/
+
+//  SECOND VERSION
+window.addEventListener("DOMContentLoaded", () => {
+let img = document.querySelector("img"); 
+let originalSrc = img.src; 
+img.style.position = "absolute"; 
+img.style.left = "0px"; 
+
+let moveInterval; 
+let isDancing = false; 
+
 function catWalk() {
-  // TODO complete this function
+    const screenWidth = window.innerWidth;
+    let currentLeft = parseInt(img.style.left);
+
+    if (Math.abs(currentLeft - screenWidth / 2) < 10 && !isDancing) {
+        catDanse(); 
+    }
+
+    if (currentLeft > screenWidth) {
+        img.style.left = "0px";
+    } else {
+        img.style.left = currentLeft + 10 + "px"; 
+    }
 }
 
-// TODO execute `catWalk` when the browser has completed loading the page
+function catDanse() {
+    isDancing = true;
+    img.src = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif"; 
+    clearInterval(moveInterval);
+
+    setTimeout(() => {
+        img.src = originalSrc;
+        isDancing = false; 
+        moveInterval = setInterval(catWalk, 50);
+    }, 5000);
+}
+moveInterval = setInterval(catWalk, 50);
+});
+
+
+//  FIRST VERSION
+// window.addEventListener("DOMContentLoaded", () => {
+// let img = document.querySelector("img"); 
+// let originalSrc = img.src; 
+// img.style.position = "absolute"; 
+// img.style.left = "0px"; 
+
+// let moveInterval; 
+// let isDancing = false; 
+
+// function catWalk() {
+//     const screenWidth = window.innerWidth;
+//     let currentLeft = parseInt(img.style.left);
+
+
+//     if (Math.abs(currentLeft - screenWidth / 2) < 10 && !isDancing) {
+//         isDancing = true; 
+//         img.src = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif"; 
+
+//         clearInterval(moveInterval);
+
+//         setTimeout(() => {
+//             img.src = originalSrc; 
+//             isDancing = false; 
+//             moveInterval = setInterval(catWalk, 50);
+//         }, 5000);
+//     }
+
+//     if (currentLeft > screenWidth) {
+//         img.style.left = "0px";
+//     } else {
+//         img.style.left = currentLeft + 10 + "px";
+//     }
+// }
+
+// moveInterval = setInterval(catWalk, 50);
+// });
