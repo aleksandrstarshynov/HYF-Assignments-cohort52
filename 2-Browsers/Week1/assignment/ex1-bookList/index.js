@@ -22,20 +22,24 @@ function createBookList(books) {
 
   books.forEach((book) => {
     const li = document.createElement('li');
-    if (book.alreadyRead) { li.classList.add('read'); } else { li.classList.add('unread'); }
+    if (book.alreadyRead) { 
+      li.classList.add('read'); 
+    } else { 
+      li.classList.add('unread'); 
+    }
 
     const p = document.createElement('p');
     p.textContent = `${book.title} by ${book.author}`;
 
     const img = document.createElement('img');
-    const title = book.title.split(' ').join('_');
-    img.src = `./assets/${title.toLowerCase()}.jpg`;
+    img.src = book.imagePath; 
     img.alt = book.title;
 
     li.appendChild(p);
     li.appendChild(img);
     ul.appendChild(li);
   });
+
   return ul;
 }
 

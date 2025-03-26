@@ -21,80 +21,40 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
    https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif
 -----------------------------------------------------------------------------*/
 
-//  SECOND VERSION
-window.addEventListener("DOMContentLoaded", () => {
-let img = document.querySelector("img"); 
-let originalSrc = img.src; 
-img.style.position = "absolute"; 
-img.style.left = "0px"; 
-
-let moveInterval; 
-let isDancing = false; 
-
 function catWalk() {
-    const screenWidth = window.innerWidth;
-    let currentLeft = parseInt(img.style.left);
-
-    if (Math.abs(currentLeft - screenWidth / 2) < 10 && !isDancing) {
-        catDanse(); 
+    const imageCat = document.querySelector('img');
+    const walkingGifUrl = "http://www.anniemation.com/clip_art/images/cat-walk.gif";
+    const newGifUrl = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif";
+    
+    imageCat.style.left = 0;
+    let currentLeftPosition = 0;
+  
+    function catMoving() {
+      currentLeftPosition += 10;
+      imageCat.style.left = currentLeftPosition + 'px';
+  
+      if (
+        currentLeftPosition >= window.innerWidth / 2 - imageCat.width / 2 &&
+        currentLeftPosition <= window.innerWidth / 2 - imageCat.width / 2 + 9
+      ) {
+        clearInterval(movingInterval);
+        imageCat.src = newGifUrl;
+  
+        setTimeout(() => {
+          imageCat.src = walkingGifUrl;
+          movingInterval = setInterval(catMoving, 50);
+        }, 5000);
+        currentLeftPosition += 100;
+      }
+  
+      if (currentLeftPosition > window.innerWidth) {
+        currentLeftPosition = 0;
+      }
     }
+  
+    let movingInterval = setInterval(catMoving, 50);
+  }
+  
+  window.addEventListener('load', catWalk);
+  
 
-    if (currentLeft > screenWidth) {
-        img.style.left = "0px";
-    } else {
-        img.style.left = currentLeft + 10 + "px"; 
-    }
-}
-
-function catDanse() {
-    isDancing = true;
-    img.src = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif"; 
-    clearInterval(moveInterval);
-
-    setTimeout(() => {
-        img.src = originalSrc;
-        isDancing = false; 
-        moveInterval = setInterval(catWalk, 50);
-    }, 5000);
-}
-moveInterval = setInterval(catWalk, 50);
-});
-
-
-//  FIRST VERSION
-// window.addEventListener("DOMContentLoaded", () => {
-// let img = document.querySelector("img"); 
-// let originalSrc = img.src; 
-// img.style.position = "absolute"; 
-// img.style.left = "0px"; 
-
-// let moveInterval; 
-// let isDancing = false; 
-
-// function catWalk() {
-//     const screenWidth = window.innerWidth;
-//     let currentLeft = parseInt(img.style.left);
-
-
-//     if (Math.abs(currentLeft - screenWidth / 2) < 10 && !isDancing) {
-//         isDancing = true; 
-//         img.src = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif"; 
-
-//         clearInterval(moveInterval);
-
-//         setTimeout(() => {
-//             img.src = originalSrc; 
-//             isDancing = false; 
-//             moveInterval = setInterval(catWalk, 50);
-//         }, 5000);
-//     }
-
-//     if (currentLeft > screenWidth) {
-//         img.style.left = "0px";
-//     } else {
-//         img.style.left = currentLeft + 10 + "px";
-//     }
-// }
-
-// moveInterval = setInterval(catWalk, 50);
-// });

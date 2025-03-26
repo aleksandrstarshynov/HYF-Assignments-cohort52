@@ -8,16 +8,13 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 3. Look in the css file!
 ------------------------------------------------------------------------------*/
 
-const nickName = document.querySelector('#nickname');
-nickName.textContent = 'oleksandrstarshynov';
-
-const favFood = document.querySelector('#fav-food');
-favFood.textContent = 'meat and coffie';
-
-const homeTown = document.querySelector('#hometown');
-homeTown.textContent = 'Kharkiv';
-
-const list = document.querySelectorAll('li');
-list.forEach((li) => {
-  li.classList.add('list-item');
-});
+function updateTextContent(selector, text) {
+   const element = document.querySelector(selector);
+   if (element) {
+     element.textContent = text;
+   }
+ }
+ 
+ updateTextContent('#nickname', 'oleksandrstarshynov');
+ updateTextContent('#fav-food', 'meat and coffee');
+ updateTextContent('#hometown', 'Kharkiv');
