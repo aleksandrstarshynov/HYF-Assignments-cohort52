@@ -22,39 +22,49 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 -----------------------------------------------------------------------------*/
 
 function catWalk() {
-    const imageCat = document.querySelector('img');
-    const walkingGifUrl = "http://www.anniemation.com/clip_art/images/cat-walk.gif";
-    const newGifUrl = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif";
-    
-    imageCat.style.left = 0;
-    let currentLeftPosition = 0;
-  
-    function catMoving() {
-      currentLeftPosition += 10;
+  const imageCat = document.querySelector('img');
+
+  const WALK_SPEED = 10;
+  const ANIMATION_INTERVAL = 50;
+  const DANCE_DURATION = 5000;
+
+  const walkingGifUrl = "http://www.anniemation.com/clip_art/images/cat-walk.gif";
+  const newGifUrl = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif";
+
+  imageCat.style.left = "0px";
+  let currentLeftPosition = 0;
+
+  function catMoving() {
+      currentLeftPosition += WALK_SPEED;
       imageCat.style.left = currentLeftPosition + 'px';
-  
-      if (
-        currentLeftPosition >= window.innerWidth / 2 - imageCat.width / 2 &&
-        currentLeftPosition <= window.innerWidth / 2 - imageCat.width / 2 + 9
-      ) {
-        clearInterval(movingInterval);
-        imageCat.src = newGifUrl;
-  
-        setTimeout(() => {
-          imageCat.src = walkingGifUrl;
-          movingInterval = setInterval(catMoving, 50);
-        }, 5000);
-        currentLeftPosition += 100;
+
+      const windowMidPosition = window.innerWidth / 2; 
+      const catMidPosition = imageCat.width / 2; 
+      const catTargetStart = windowMidPosition - catMidPosition; 
+      const catTargetEnd = catTargetStart + WALK_SPEED - 1; 
+
+      if (currentLeftPosition >= catTargetStart && currentLeftPosition <= catTargetEnd) {
+          clearInterval(movingInterval);
+          imageCat.src = newGifUrl;
+
+          setTimeout(() => {
+              imageCat.src = walkingGifUrl;
+              movingInterval = setInterval(catMoving, ANIMATION_INTERVAL);
+          }, DANCE_DURATION);
+
+          currentLeftPosition += 100; 
       }
-  
+
       if (currentLeftPosition > window.innerWidth) {
-        currentLeftPosition = 0;
+          currentLeftPosition = 0;
       }
-    }
-  
-    let movingInterval = setInterval(catMoving, 50);
   }
-  
-  window.addEventListener('load', catWalk);
+
+  let movingInterval = setInterval(catMoving, ANIMATION_INTERVAL);
+}
+
+window.addEventListener('load', catWalk);
+
+
   
 
