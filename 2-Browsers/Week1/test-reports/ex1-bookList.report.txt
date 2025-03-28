@@ -1,11 +1,11 @@
 *** Unit Test Error Report ***
 
-(node:21724) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(node:24844) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
- PASS  .dist/2-Browsers/Week1/unit-tests/ex1-bookList.test.js (5.251 s)
+ PASS  .dist/2-Browsers/Week1/unit-tests/ex1-bookList.test.js (5.241 s)
   br-wk1-ex1-bookList
-    ✅ HTML should be syntactically valid (185 ms)
-    ✅ should have all TODO comments removed
+    ✅ HTML should be syntactically valid (192 ms)
+    ✅ should have all TODO comments removed (1 ms)
     ✅ should contain a <ul> that is a child of <div id="bookList"> (2 ms)
     ✅ should contain a <ul> with 3 <li> elements (1 ms)
     ✅ should contain an <li> with title and author for each book of the `myBooks` array (2 ms)
@@ -14,7 +14,7 @@
 Test Suites: 1 passed, 1 total
 Tests:       6 passed, 6 total
 Snapshots:   0 total
-Time:        6.049 s
+Time:        5.962 s, estimated 6 s
 Ran all test suites matching /D:\\HYF\\HYF-Assignments-cohort52\\.dist\\2-Browsers\\Week1\\unit-tests\\ex1-bookList.test.js/i.
 No linting errors detected.
 No spelling errors detected.
