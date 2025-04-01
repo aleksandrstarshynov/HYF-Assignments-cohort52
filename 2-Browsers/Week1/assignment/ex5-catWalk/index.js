@@ -23,8 +23,8 @@ Full description at: https://github.com/HackYourFuture/Assignments/tree/main/2-B
 const WALK_SPEED = 10;
 const ANIMATION_INTERVAL = 50;
 const DANCE_DURATION = 5000;
-const WALKINGGIFURL = "http://www.anniemation.com/clip_art/images/cat-walk.gif";
-const NEWGIFURL = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif";
+const WALKING_GIF_URL = "http://www.anniemation.com/clip_art/images/cat-walk.gif";
+const NEW_GIF_URL = "https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif";
 
 function catWalk() {
   const imageCat = document.querySelector('img');
