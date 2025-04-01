@@ -43,10 +43,10 @@ function catWalk() {
 
       if (currentLeftPosition >= catTargetStart && currentLeftPosition <= catTargetEnd) {
           clearInterval(movingInterval);
-          imageCat.src = NEWGIFURL;
+          imageCat.src = NEW_GIF_URL;
 
           setTimeout(() => {
-              imageCat.src = WALKINGGIFURL;
+              imageCat.src = WALKING_GIF_URL;
               movingInterval = setInterval(catMoving, ANIMATION_INTERVAL);
           }, DANCE_DURATION);
 
