@@ -23,13 +23,16 @@ exercise file.
 ------------------------------------------------------------------------------*/
 
 // The line below makes the rollDie() function available to this file.
-// Do not change or remove it.
 import { rollDie } from '../../helpers/pokerDiceRoller.js';
 
 export function rollDice() {
-  // TODO Refactor this function
   const dice = [1, 2, 3, 4, 5];
-  return rollDie(1);
+
+  // Создаём массив из 5 промисов — каждый rollDie(i)
+  const promises = dice.map((dieNumber) => rollDie(dieNumber));
+
+  // Объединяем все в один общий промис
+  return Promise.all(promises);
 }
 
 function main() {
@@ -43,4 +46,9 @@ if (process.env.NODE_ENV !== 'test') {
   main();
 }
 
-// TODO Replace this comment by your explanation that was asked for in the assignment description.
+/*
+------------------------------------------------------------------------------
+- Why do some dice continue to roll after one die has already failed?
+- The answer is that by logic Promise is just some kind of cover with status. It has three statuses, but can be only started. No way to finish, abort the process.
+Such constraction as Promise.all is just the union of the defaulte promises. It has some rules, but for us important to know that they are independend in their activity. If one dice "fallen off the table" other continue their action, all other promises still without final status. 
+*/
