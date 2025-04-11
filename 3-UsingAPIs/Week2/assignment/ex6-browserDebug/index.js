@@ -1,7 +1,3 @@
-/*
-Full description at:https://github.com/HackYourFuture/Assignments/blob/main/3-UsingAPIs/Week2/README.md#exercise-6-using-the-browser-debugger
-*/
-
 async function getData(url) {
   const response = await fetch(url);
   return response.json();
@@ -30,8 +26,12 @@ function renderLaureate(ul, { knownName, birth, death }) {
   const li = createAndAppend('li', ul);
   const table = createAndAppend('table', li);
   addTableRow(table, 'Name', knownName.en);
-  addTableRow(table, 'Birth', `${birth.date}, ${birth.place.locationString}`);
-  addTableRow(table, 'Death', `${death.date}, ${death.place.locationString}`);
+
+  const birthInfo = birth ? `${birth.date}, ${birth.place.locationString}` : 'Unknown';
+  addTableRow(table, 'Birth', birthInfo);
+
+  const deathInfo = death ? `${death.date}, ${death.place.locationString}` : 'Unknown';
+  addTableRow(table, 'Death', deathInfo);
 }
 
 function renderLaureates(laureates) {
@@ -41,10 +41,16 @@ function renderLaureates(laureates) {
 
 async function fetchAndRender() {
   try {
-    const laureates = getData(
+    const data = await getData(
       'https://api.nobelprize.org/2.0/laureates?birthCountry=Netherlands&format=json&csvLang=en'
     );
-    renderLaureates(laureates);
+    const laureates = data.laureates;  
+
+    if (laureates) {
+      renderLaureates(laureates);  
+    } else {
+      console.error('No laureates data available');
+    }
   } catch (err) {
     console.error(`Something went wrong: ${err.message}`);
   }
