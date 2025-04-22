@@ -7,7 +7,7 @@ import { rollDie } from '../../helpers/pokerDiceRoller.js';
  */
 export async function rollDice() {
   const dice = [1, 2, 3, 4, 5];
-  const promises = dice.map(() => rollDie());  
+  const promises = dice.map((dieNumber) => rollDie(dieNumber));  
   return Promise.race(promises); 
 }
 
@@ -24,6 +24,7 @@ async function main() {
 if (process.env.NODE_ENV !== 'test') {
   main();
 }
+
 
 // We are using Promise.race() here in line 11. The logic if it is just to wait for the first promise in the array to resolve. 
 // No metter either successfully or unsuccessfully. Once the first promise resolves, it "wins" and returns its result. 
