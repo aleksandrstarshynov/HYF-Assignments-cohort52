@@ -27,10 +27,10 @@ function renderLaureate(ul, { knownName, birth, death }) {
   const table = createAndAppend('table', li);
   addTableRow(table, 'Name', knownName.en);
 
-  const birthInfo = birth ? `${birth.date}, ${birth.place.locationString}` : 'Unknown';
+  const birthInfo = birth ? `${birth.date}, ${birth.place.locationString.en}` : 'Unknown';
   addTableRow(table, 'Birth', birthInfo);
 
-  const deathInfo = death ? `${death.date}, ${death.place.locationString}` : 'Unknown';
+  const deathInfo = death ? `${death.date}, ${death.place.locationString.en}` : 'Unknown';
   addTableRow(table, 'Death', deathInfo);
 }
 
